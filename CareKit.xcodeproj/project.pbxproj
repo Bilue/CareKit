@@ -171,6 +171,8 @@
 		BAD3286B1DB028AF0021A773 /* OCKInsightsRingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD328691DB028AF0021A773 /* OCKInsightsRingTableViewCell.m */; };
 		FC9047CD21E5626D0012C685 /* CustomActivityTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9047CB21E5626D0012C685 /* CustomActivityTableViewCell.h */; };
 		FC9047CE21E5626D0012C685 /* CustomActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9047CC21E5626D0012C685 /* CustomActivityTableViewCell.m */; };
+		FC9047E721E5A1890012C685 /* CustomSectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9047E521E5A1890012C685 /* CustomSectionView.h */; };
+		FC9047E821E5A1890012C685 /* CustomSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9047E621E5A1890012C685 /* CustomSectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -382,6 +384,8 @@
 		BAD328691DB028AF0021A773 /* OCKInsightsRingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKInsightsRingTableViewCell.m; sourceTree = "<group>"; };
 		FC9047CB21E5626D0012C685 /* CustomActivityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomActivityTableViewCell.h; sourceTree = "<group>"; };
 		FC9047CC21E5626D0012C685 /* CustomActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomActivityTableViewCell.m; sourceTree = "<group>"; };
+		FC9047E521E5A1890012C685 /* CustomSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSectionView.h; sourceTree = "<group>"; };
+		FC9047E621E5A1890012C685 /* CustomSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -870,10 +874,28 @@
 		FC9047CA21E5618F0012C685 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				FC9047E421E5A1530012C685 /* Section Views */,
+				FC9047E321E5A1480012C685 /* Cells */,
+			);
+			name = "Custom Components";
+			sourceTree = "<group>";
+		};
+		FC9047E321E5A1480012C685 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
 				FC9047CB21E5626D0012C685 /* CustomActivityTableViewCell.h */,
 				FC9047CC21E5626D0012C685 /* CustomActivityTableViewCell.m */,
 			);
-			name = "Custom Components";
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		FC9047E421E5A1530012C685 /* Section Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC9047E521E5A1890012C685 /* CustomSectionView.h */,
+				FC9047E621E5A1890012C685 /* CustomSectionView.m */,
+			);
+			name = "Section Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -943,6 +965,7 @@
 				241707C31C9A3AB7005D7123 /* OCKBarChart.h in Headers */,
 				186D42B71D78D8D60083EF5B /* OCKCarePlanThreshold.h in Headers */,
 				86EA9A501C9C644E00B93BB1 /* OCKHTMLPDFWriter.h in Headers */,
+				FC9047E721E5A1890012C685 /* CustomSectionView.h in Headers */,
 				8677EE1B1C9775EB00588CD6 /* OCKCareSchedule.h in Headers */,
 				8677EE1D1C9775EB00588CD6 /* OCKCareSchedule_Internal.h in Headers */,
 				8677EE101C9775EB00588CD6 /* OCKCarePlanActivity_Internal.h in Headers */,
@@ -1141,6 +1164,7 @@
 				BA8A8CA11D9DAC680078C5EA /* OCKWeekView.m in Sources */,
 				241707C41C9A3AB7005D7123 /* OCKBarChart.m in Sources */,
 				BA660FFA1EB1FF1100B7B1A7 /* OCKPatientHeaderView.m in Sources */,
+				FC9047E821E5A1890012C685 /* CustomSectionView.m in Sources */,
 				8677EE0F1C9775EB00588CD6 /* OCKCarePlanActivity.m in Sources */,
 				241707D21C9A3AB7005D7123 /* OCKInsightItem.m in Sources */,
 				24EA9FB51C9A3D420036028E /* OCKCareCardButton.m in Sources */,
