@@ -146,6 +146,14 @@ static const CGFloat HorizontalMargin = 5.0;
                                                                     multiplier:1.0
                                                                       constant:HorizontalMargin],
 
+                                        [NSLayoutConstraint constraintWithItem:_valueLabel
+                                                                     attribute:NSLayoutAttributeHeight
+                                                                relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                        toItem:nil
+                                                                     attribute: NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:50.0],
+
                                         [NSLayoutConstraint constraintWithItem:_titleLabel
                                                                      attribute:NSLayoutAttributeLeading
                                                                      relatedBy:NSLayoutRelationEqual
