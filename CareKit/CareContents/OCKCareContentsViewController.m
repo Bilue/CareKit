@@ -46,6 +46,7 @@
 #import "OCKDefines_Private.h"
 #import "OCKGlyph_Internal.h"
 #import "CustomActivityTableViewCell.h"
+#import "CustomSectionView.h"
 
 
 #define RedColor() OCKColorFromRGB(0xEF445B);
@@ -82,7 +83,8 @@
     NSString *_readOnlyString;
     NSString *_healthDataSectionString;
     NSString *_buttonSectionString;
-    NSString *_nonPrescribedTrackablesSectionString;
+    NSString *_nonPrescribedTrackablesSectionHeaderString;
+    NSString *_nonPrescribedTrackablesSectionSubheaderString;
     BOOL _isGrouped;
     BOOL _isSorted;
 }
@@ -111,7 +113,9 @@
     _readOnlyString = OCKLocalizedString(@"ACTIVITY_TYPE_READ_ONLY_SECTION_HEADER", nil);
     _healthDataSectionString = OCKLocalizedString(@"ACTIVITY_TYPE_HEALTH_DATA_SECTION_HEADER", nil);
     _buttonSectionString = OCKLocalizedString(@"ACTIVITY_TYPE_BUTTON_SECTION_HEADER", nil);
-    _nonPrescribedTrackablesSectionString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_HEADER", nil);
+    _nonPrescribedTrackablesSectionHeaderString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_HEADER", nil);
+    _nonPrescribedTrackablesSectionSubheaderString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_SUBHEADER", nil);
+
     if (self.optionalSectionHeader && ![self.optionalSectionHeader  isEqual: @""]) {
         _optionalString = _optionalSectionHeader;
     }
@@ -148,7 +152,8 @@
     _tableView.estimatedRowHeight = 90.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     _tableView.tableFooterView = [UIView new];
-    _tableView.estimatedSectionHeaderHeight = 0;
+    _tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+    _tableView.estimatedSectionHeaderHeight = 51;
     _tableView.estimatedSectionFooterHeight = 0;
     
     _refreshControl = [[UIRefreshControl alloc] init];
@@ -672,9 +677,9 @@
             [sortedKeys addObject:_healthDataSectionString];
         }
 
-        if ([sortedKeys containsObject:_nonPrescribedTrackablesSectionString]) {
-            [sortedKeys removeObject:_nonPrescribedTrackablesSectionString];
-            [sortedKeys addObject:_nonPrescribedTrackablesSectionString];
+        if ([sortedKeys containsObject:_nonPrescribedTrackablesSectionHeaderString]) {
+            [sortedKeys removeObject:_nonPrescribedTrackablesSectionHeaderString];
+            [sortedKeys addObject:_nonPrescribedTrackablesSectionHeaderString];
         }
 
         if ([sortedKeys containsObject:_buttonSectionString]) {
@@ -813,12 +818,27 @@
 
 #pragma mark - UITableViewDelegate
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *HeaderIdentifier = @"DefaultSection";
+    CustomSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+    if (!sectionView) {
+        sectionView = [[CustomSectionView alloc] initWithReuseIdentifier:HeaderIdentifier];
+    }
+
     NSString *sectionTitle = _sectionTitles[section];
     if ([sectionTitle isEqualToString:_otherString] && (_sectionTitles.count == 1 || (_sectionTitles.count == 2 && [_sectionTitles containsObject:_optionalString]))) {
         sectionTitle = @"";
     }
-    return sectionTitle;
+
+    sectionView.title = sectionTitle;
+
+    OCKCarePlanEvent *selectedEvent = _tableViewData[section].firstObject.firstObject;
+    OCKCarePlanActivityType type = selectedEvent.activity.type;
+    if (type == OCKCarePlanActivityTypeNonPrescribedTrackables) {
+        sectionView.subtitle = _nonPrescribedTrackablesSectionSubheaderString;
+    }
+
+    return sectionView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
