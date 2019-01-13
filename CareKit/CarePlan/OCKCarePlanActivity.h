@@ -188,13 +188,14 @@ OCK_CLASS_AVAILABLE
  */
 
 + (instancetype)healthDataEntryWithIdentifier:(NSString *)identifier
-                             groupIdentifier:(nullable NSString *)groupIdentifier
-                                       title:(NSString *)title
-                                        text:(nullable NSString *)text
-                                instructions:(nullable NSString *)instructions
-                                    imageURL:(nullable NSURL *)imageURL
-                                    schedule:(OCKCareSchedule *)schedule
-                                    userInfo:(nullable NSDictionary *)userInfo;
+                              groupIdentifier:(nullable NSString *)groupIdentifier
+                                        title:(NSString *)title
+                                         text:(nullable NSString *)text
+                                    tintColor:(UIColor *)tintColor
+                                 instructions:(nullable NSString *)instructions
+                                     imageURL:(nullable NSURL *)imageURL
+                                     schedule:(OCKCareSchedule *)schedule
+                                     userInfo:(nullable NSDictionary *)userInfo;
 
 /**
  Convenience initializer for track button related activity type

@@ -214,23 +214,25 @@
                               groupIdentifier:(nullable NSString *)groupIdentifier
                                         title:(NSString *)title
                                          text:(nullable NSString *)text
+                                    tintColor:(UIColor *)tintColor
                                  instructions:(nullable NSString *)instructions
                                      imageURL:(nullable NSURL *)imageURL
                                      schedule:(OCKCareSchedule *)schedule
                                      userInfo:(nullable NSDictionary *)userInfo {
+
     return [[self alloc] initWithIdentifier:identifier
-                            groupIdentifier:groupIdentifier
-                                       type:OCKCarePlanActivityTypeHealthEntry
-                                      title:title
-                                       text:text
-                                  tintColor:nil
-                               instructions:instructions
-                                   imageURL:imageURL
-                                   schedule:schedule
-                           resultResettable:NO
-                                   userInfo:userInfo
-                                 thresholds:nil
-                                   optional:YES];
+                                  groupIdentifier:groupIdentifier
+                                             type:OCKCarePlanActivityTypeHealthEntry
+                                            title:title
+                                             text:text
+                                        tintColor:tintColor
+                                     instructions:nil
+                                         imageURL:nil
+                                         schedule:schedule
+                                 resultResettable:NO
+                                         userInfo:userInfo
+                                       thresholds:nil
+                                         optional:YES];
 }
 
 + (instancetype)buttonWithIdentifier:(NSString *)identifier
