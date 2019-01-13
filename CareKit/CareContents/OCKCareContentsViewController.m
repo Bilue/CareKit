@@ -47,6 +47,7 @@
 #import "OCKGlyph_Internal.h"
 #import "CustomActivityTableViewCell.h"
 #import "CustomSectionView.h"
+#import "CustomSegmentedControlSection.h"
 
 
 #define RedColor() OCKColorFromRGB(0xEF445B);
@@ -845,28 +846,36 @@
 #pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *HeaderIdentifier = @"DefaultSection";
-    CustomSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
-    if (!sectionView) {
-        sectionView = [[CustomSectionView alloc] initWithReuseIdentifier:HeaderIdentifier];
-    }
-
-    NSString *sectionTitle = _sectionTitles[section];
-    sectionView.title = sectionTitle;
 
     OCKCarePlanEvent *selectedEvent = _tableViewData[section].firstObject.firstObject;
     OCKCarePlanActivityType type = selectedEvent.activity.type;
+    NSString *sectionTitle = _sectionTitles[section];
+
     if (type == OCKCarePlanActivityTypeNonPrescribedTrackables) {
+        NSString *HeaderIdentifier = @"NonPrescribedTrackablesSection";
+        CustomSegmentedControlSection *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+        if (!sectionView) {
+            sectionView = [[CustomSegmentedControlSection alloc] initWithReuseIdentifier:HeaderIdentifier];
+        }
+        
+        sectionView.title = sectionTitle;
         if (_tableViewData[section].count > 0) {
             sectionView.subtitle = _nonPrescribedTrackablesSectionSubheaderString;
         } else {
             sectionView.subtitle = _nonPrescribedTrackablesEmptySectionSubheaderString;
         }
+        return sectionView;
     } else {
-        sectionView.subtitle = @"";
+        NSString *HeaderIdentifier = @"DefaultSection";
+        CustomSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+        if (!sectionView) {
+            sectionView = [[CustomSectionView alloc] initWithReuseIdentifier:HeaderIdentifier];
+        }
+        sectionView.title = sectionTitle;
+        return sectionView;
     }
 
-    return sectionView;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
