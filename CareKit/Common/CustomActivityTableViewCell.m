@@ -7,6 +7,7 @@
 //
 
 #import "OCKLabel.h"
+#import "OCKHelpers.h"
 #import "CustomActivityTableViewCell.h"
 
 static const CGFloat TopMargin = 5.0;
@@ -19,12 +20,6 @@ static const CGFloat HorizontalMargin = 5.0;
     OCKLabel *_updatedAtLabel;
     UIView *_roundedView;
     NSMutableArray *_constraints;
-}
-
-- (void)setCellBackgroundColor:(UIColor *)cellBackgroundColor {
-    if (_roundedView) {
-        _roundedView.backgroundColor = cellBackgroundColor;
-    }
 }
 
 - (void)setEvent:(OCKCarePlanEvent *)event {
@@ -40,6 +35,7 @@ static const CGFloat HorizontalMargin = 5.0;
         _roundedView = [UIView new];
         _roundedView.layer.cornerRadius = 5.0;
         _roundedView.layer.masksToBounds = YES;
+        _roundedView.backgroundColor = _event.activity.tintColor;
         [self.contentView addSubview:_roundedView];
     }
 
@@ -70,10 +66,34 @@ static const CGFloat HorizontalMargin = 5.0;
     [self setUpConstraints];
 }
 
+- (NSAttributedString *)attributedStringFromResult:(OCKCarePlanEventResult *) result {
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.alignment = NSTextAlignmentRight;
+    NSDictionary *resultStringAttributes = @{ NSParagraphStyleAttributeName: paragraphStyle };
+    NSMutableAttributedString *resultString = [[NSMutableAttributedString alloc] initWithString:@"" attributes: resultStringAttributes];
+
+    NSDictionary *valueStringAttributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:49 weight:UIFontWeightRegular] };
+    NSAttributedString *valueString = [[NSAttributedString alloc] initWithString:result.valueString attributes: valueStringAttributes];
+    [resultString appendAttributedString: valueString];
+
+    NSDictionary *unitStringAttributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:20 weight:UIFontWeightMedium] };
+    NSAttributedString *unitString = [[NSAttributedString alloc] initWithString: result.unitString attributes: unitStringAttributes];
+    [resultString appendAttributedString:unitString];
+
+    return resultString;
+}
+
 - (void)updateView {
     _titleLabel.text = _event.activity.title;
-    _valueLabel.text = _event.result.valueString;
-    _updatedAtLabel.text = _event.activity.text;
+
+    if (_event.state == OCKCarePlanEventStateCompleted) {
+        _valueLabel.attributedText = [self attributedStringFromResult:_event.result];
+        NSString *updatedAt = OCKShortStyleTimeStringFromDate(_event.result.creationDate);
+        _updatedAtLabel.text = [NSString stringWithFormat:@"Today at %@", updatedAt];
+    } else {
+        _updatedAtLabel.text = @"NOT COMPLETED";
+    }
+
 }
 
 - (void)setUpConstraints {
