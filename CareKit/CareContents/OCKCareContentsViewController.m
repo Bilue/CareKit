@@ -862,6 +862,8 @@
         } else {
             sectionView.subtitle = _nonPrescribedTrackablesEmptySectionSubheaderString;
         }
+    } else {
+        sectionView.subtitle = @"";
     }
 
     return sectionView;
@@ -950,6 +952,7 @@
         }
         cell.textLabel.text = event.activity.title;
         cell.detailTextLabel.text = event.activity.text;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         return cell;
     }
