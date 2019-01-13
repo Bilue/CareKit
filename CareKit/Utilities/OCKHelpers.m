@@ -112,6 +112,17 @@ NSString *OCKSignatureStringFromDate(NSDate *date) {
     return [__formatter stringFromDate:date];
 }
 
+NSString *OCKShortStyleTimeStringFromDate(NSDate *date) {
+    static NSDateFormatter *__formatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __formatter = [NSDateFormatter new];
+        __formatter.dateStyle = NSDateFormatterNoStyle;
+        __formatter.timeStyle = NSDateFormatterShortStyle;
+    });
+    return [__formatter stringFromDate:date];
+}
+
 UIColor *OCKRGBA(uint32_t x, CGFloat alpha) {
     CGFloat b = (x & 0xff) / 255.0f; x >>= 8;
     CGFloat g = (x & 0xff) / 255.0f; x >>= 8;
