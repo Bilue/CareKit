@@ -127,8 +127,8 @@
     self.store.careCardUIDelegate = self;
     [self setGlyphTintColor: _glyphTintColor];
     NSDictionary *_initialDictionary = @{ @(OCKCarePlanActivityTypeAssessment): [NSMutableArray new],
-                                         @(OCKCarePlanActivityTypeIntervention): [NSMutableArray new],
-                                         @(OCKCarePlanActivityTypeReadOnly): [NSMutableArray new],
+                                          @(OCKCarePlanActivityTypeIntervention): [NSMutableArray new],
+                                          @(OCKCarePlanActivityTypeReadOnly): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeHealthEntry): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeNonPrescribedTrackables): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeButton): [NSMutableArray new]
@@ -759,8 +759,8 @@
                         OCKCareCardTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
                         cell.interventionEvents = events;
                     } else if (type == OCKCarePlanActivityTypeAssessment) {
-                        OCKSymptomTrackerTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-                        cell.assessmentEvent = events.firstObject;
+                        CustomActivityTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+                        cell.event = events.firstObject;
                     }
                 }
                 break;
@@ -900,7 +900,6 @@
                                                          reuseIdentifier:CellIdentifier];
         }
         cell.event = event;
-        cell.cellBackgroundColor = [UIColor purpleColor];
         
         return cell;
     }
@@ -913,7 +912,6 @@
                                                       reuseIdentifier:CellIdentifier];
         }
         cell.event = event;
-        cell.cellBackgroundColor = [UIColor purpleColor];
 
         return cell;
     }
