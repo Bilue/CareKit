@@ -173,6 +173,8 @@
 		FC9047CE21E5626D0012C685 /* CustomActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9047CC21E5626D0012C685 /* CustomActivityTableViewCell.m */; };
 		FC9047E721E5A1890012C685 /* CustomSectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9047E521E5A1890012C685 /* CustomSectionView.h */; };
 		FC9047E821E5A1890012C685 /* CustomSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9047E621E5A1890012C685 /* CustomSectionView.m */; };
+		FCE629F121EBE40600D541A9 /* CustomSegmentedControlSection.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */; };
+		FCE629F221EBE40600D541A9 /* CustomSegmentedControlSection.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +388,8 @@
 		FC9047CC21E5626D0012C685 /* CustomActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomActivityTableViewCell.m; sourceTree = "<group>"; };
 		FC9047E521E5A1890012C685 /* CustomSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSectionView.h; sourceTree = "<group>"; };
 		FC9047E621E5A1890012C685 /* CustomSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSectionView.m; sourceTree = "<group>"; };
+		FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControlSection.h; sourceTree = "<group>"; };
+		FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControlSection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -894,6 +898,8 @@
 			children = (
 				FC9047E521E5A1890012C685 /* CustomSectionView.h */,
 				FC9047E621E5A1890012C685 /* CustomSectionView.m */,
+				FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */,
+				FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */,
 			);
 			name = "Section Views";
 			sourceTree = "<group>";
@@ -971,6 +977,7 @@
 				8677EE101C9775EB00588CD6 /* OCKCarePlanActivity_Internal.h in Headers */,
 				BA274F471EB703DC00DD17EF /* OCKTextView.h in Headers */,
 				8677EE141C9775EB00588CD6 /* OCKCarePlanEventResult.h in Headers */,
+				FCE629F121EBE40600D541A9 /* CustomSegmentedControlSection.h in Headers */,
 				2489297B1C90E70100EBBE1F /* OCKConnectTableViewHeader.h in Headers */,
 				BA3793D81EB66BC50004A540 /* OCKPatientWidget.h in Headers */,
 				BA3793E81EB66D7D0004A540 /* OCKDefaultPatientWidgetView.h in Headers */,
@@ -1158,6 +1165,7 @@
 				244A924A1CA210F7007B42D6 /* OCKWeekViewController.m in Sources */,
 				241707CA1C9A3AB7005D7123 /* OCKChart.m in Sources */,
 				BA38457F1D9CA698007990DA /* OCKGlyph.m in Sources */,
+				FCE629F221EBE40600D541A9 /* CustomSegmentedControlSection.m in Sources */,
 				24FD43741E56843E004439EA /* OCKConnectHeaderView.m in Sources */,
 				8677EE191C9775EB00588CD6 /* OCKCarePlanStore.xcdatamodeld in Sources */,
 				241707D01C9A3AB7005D7123 /* OCKGroupedBarChartView.m in Sources */,

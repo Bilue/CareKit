@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CustomActivityTableViewCell : OCKTableViewCell
 
 @property (nonatomic, copy) OCKCarePlanEvent *event;
-@property (nonatomic, copy) UIColor *cellBackgroundColor;
 
 @end
 

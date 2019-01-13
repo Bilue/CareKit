@@ -47,6 +47,7 @@
 #import "OCKGlyph_Internal.h"
 #import "CustomActivityTableViewCell.h"
 #import "CustomSectionView.h"
+#import "CustomSegmentedControlSection.h"
 
 
 #define RedColor() OCKColorFromRGB(0xEF445B);
@@ -85,6 +86,8 @@
     NSString *_buttonSectionString;
     NSString *_nonPrescribedTrackablesSectionHeaderString;
     NSString *_nonPrescribedTrackablesSectionSubheaderString;
+    NSString *_nonPrescribedTrackablesEmptySectionSubheaderString;
+
     BOOL _isGrouped;
     BOOL _isSorted;
 }
@@ -115,6 +118,7 @@
     _buttonSectionString = OCKLocalizedString(@"ACTIVITY_TYPE_BUTTON_SECTION_HEADER", nil);
     _nonPrescribedTrackablesSectionHeaderString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_HEADER", nil);
     _nonPrescribedTrackablesSectionSubheaderString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_SUBHEADER", nil);
+    _nonPrescribedTrackablesEmptySectionSubheaderString = OCKLocalizedString(@"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_EMPTY_SECTION_SUBHEADER", nil);
 
     if (self.optionalSectionHeader && ![self.optionalSectionHeader  isEqual: @""]) {
         _optionalString = _optionalSectionHeader;
@@ -127,8 +131,8 @@
     self.store.careCardUIDelegate = self;
     [self setGlyphTintColor: _glyphTintColor];
     NSDictionary *_initialDictionary = @{ @(OCKCarePlanActivityTypeAssessment): [NSMutableArray new],
-                                         @(OCKCarePlanActivityTypeIntervention): [NSMutableArray new],
-                                         @(OCKCarePlanActivityTypeReadOnly): [NSMutableArray new],
+                                          @(OCKCarePlanActivityTypeIntervention): [NSMutableArray new],
+                                          @(OCKCarePlanActivityTypeReadOnly): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeHealthEntry): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeNonPrescribedTrackables): [NSMutableArray new],
                                           @(OCKCarePlanActivityTypeButton): [NSMutableArray new]
@@ -597,6 +601,9 @@
     
     NSMutableArray *interventionGroupIdentifiers = [[NSMutableArray alloc] init];
     NSMutableArray *assessmentGroupIdentifiers = [[NSMutableArray alloc] init];
+    NSMutableArray *healthGroupIndentifiers = [[NSMutableArray alloc] init];
+    NSMutableArray *nonPrescribedGroupIdentifiers = [[NSMutableArray alloc] init];
+    NSMutableArray *buttonGroupIndentifiers = [[NSMutableArray alloc] init];
     
     NSArray<NSArray<OCKCarePlanEvent *> *> *events = [NSArray arrayWithArray:[interventions arrayByAddingObjectsFromArray:[assessments arrayByAddingObjectsFromArray:[readOnly arrayByAddingObjectsFromArray:[healthEntries arrayByAddingObjectsFromArray:[nonPrescribedTrackables arrayByAddingObjectsFromArray:buttons]]]]]];
     NSMutableDictionary *groupedEvents = [NSMutableDictionary new];
@@ -616,12 +623,26 @@
                 [assessmentGroupIdentifiers addObject:firstEvent.activity.groupIdentifier];
             }
         }
+
+        if (firstEvent.activity.groupIdentifier && firstEvent.activity.type == OCKCarePlanActivityTypeHealthEntry) {
+            if (![healthGroupIndentifiers containsObject:firstEvent.activity.groupIdentifier]) {
+                [healthGroupIndentifiers addObject:firstEvent.activity.groupIdentifier];
+            }
+        }
+
+        if (firstEvent.activity.groupIdentifier && firstEvent.activity.type == OCKCarePlanActivityTypeNonPrescribedTrackables) {
+            if (![nonPrescribedGroupIdentifiers containsObject:firstEvent.activity.groupIdentifier]) {
+                [nonPrescribedGroupIdentifiers addObject:firstEvent.activity.groupIdentifier];
+            }
+        }
+
+        if (firstEvent.activity.groupIdentifier && firstEvent.activity.type == OCKCarePlanActivityTypeButton) {
+            if (![buttonGroupIndentifiers containsObject:firstEvent.activity.groupIdentifier]) {
+                [buttonGroupIndentifiers addObject:firstEvent.activity.groupIdentifier];
+            }
+        }
         
         NSString *groupIdentifier = firstEvent.activity.groupIdentifier ? firstEvent.activity.groupIdentifier : _otherString;
-        
-        if (firstEvent.activity.optional) {
-            groupIdentifier = firstEvent.activity.type == OCKCarePlanActivityTypeReadOnly ? _readOnlyString : _optionalString;
-        }
         
         if (!_isGrouped) {
             // Force only one grouping
@@ -656,6 +677,27 @@
                 [sortedKeys addObject:groupIdentifier];
             }
         }
+
+        for (NSString *groupIdentifier in healthGroupIndentifiers) {
+            if ([sortedKeys containsObject:groupIdentifier]) {
+                [sortedKeys removeObject:groupIdentifier];
+                [sortedKeys addObject:groupIdentifier];
+            }
+        }
+
+        for (NSString *groupIdentifier in nonPrescribedGroupIdentifiers) {
+            if ([sortedKeys containsObject:groupIdentifier]) {
+                [sortedKeys removeObject:groupIdentifier];
+                [sortedKeys addObject:groupIdentifier];
+            }
+        }
+
+        for (NSString *groupIdentifier in buttonGroupIndentifiers) {
+            if ([sortedKeys containsObject:groupIdentifier]) {
+                [sortedKeys removeObject:groupIdentifier];
+                [sortedKeys addObject:groupIdentifier];
+            }
+        }
         
         if ([sortedKeys containsObject:_otherString]) {
             [sortedKeys removeObject:_otherString];
@@ -672,21 +714,6 @@
             [sortedKeys addObject:_readOnlyString];
         }
 
-        if ([sortedKeys containsObject:_healthDataSectionString]) {
-            [sortedKeys removeObject:_healthDataSectionString];
-            [sortedKeys addObject:_healthDataSectionString];
-        }
-
-        if ([sortedKeys containsObject:_nonPrescribedTrackablesSectionHeaderString]) {
-            [sortedKeys removeObject:_nonPrescribedTrackablesSectionHeaderString];
-            [sortedKeys addObject:_nonPrescribedTrackablesSectionHeaderString];
-        }
-
-        if ([sortedKeys containsObject:_buttonSectionString]) {
-            [sortedKeys removeObject:_buttonSectionString];
-            [sortedKeys addObject:_buttonSectionString];
-        }
-        
         _sectionTitles = [sortedKeys copy];
         
     } else {
@@ -759,8 +786,8 @@
                         OCKCareCardTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
                         cell.interventionEvents = events;
                     } else if (type == OCKCarePlanActivityTypeAssessment) {
-                        OCKSymptomTrackerTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-                        cell.assessmentEvent = events.firstObject;
+                        CustomActivityTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+                        cell.event = events.firstObject;
                     }
                 }
                 break;
@@ -819,26 +846,36 @@
 #pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *HeaderIdentifier = @"DefaultSection";
-    CustomSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
-    if (!sectionView) {
-        sectionView = [[CustomSectionView alloc] initWithReuseIdentifier:HeaderIdentifier];
-    }
-
-    NSString *sectionTitle = _sectionTitles[section];
-    if ([sectionTitle isEqualToString:_otherString] && (_sectionTitles.count == 1 || (_sectionTitles.count == 2 && [_sectionTitles containsObject:_optionalString]))) {
-        sectionTitle = @"";
-    }
-
-    sectionView.title = sectionTitle;
 
     OCKCarePlanEvent *selectedEvent = _tableViewData[section].firstObject.firstObject;
     OCKCarePlanActivityType type = selectedEvent.activity.type;
+    NSString *sectionTitle = _sectionTitles[section];
+
     if (type == OCKCarePlanActivityTypeNonPrescribedTrackables) {
-        sectionView.subtitle = _nonPrescribedTrackablesSectionSubheaderString;
+        NSString *HeaderIdentifier = @"NonPrescribedTrackablesSection";
+        CustomSegmentedControlSection *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+        if (!sectionView) {
+            sectionView = [[CustomSegmentedControlSection alloc] initWithReuseIdentifier:HeaderIdentifier];
+        }
+        
+        sectionView.title = sectionTitle;
+        if (_tableViewData[section].count > 0) {
+            sectionView.subtitle = _nonPrescribedTrackablesSectionSubheaderString;
+        } else {
+            sectionView.subtitle = _nonPrescribedTrackablesEmptySectionSubheaderString;
+        }
+        return sectionView;
+    } else {
+        NSString *HeaderIdentifier = @"DefaultSection";
+        CustomSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+        if (!sectionView) {
+            sectionView = [[CustomSectionView alloc] initWithReuseIdentifier:HeaderIdentifier];
+        }
+        sectionView.title = sectionTitle;
+        return sectionView;
     }
 
-    return sectionView;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -900,7 +937,6 @@
                                                          reuseIdentifier:CellIdentifier];
         }
         cell.event = event;
-        cell.cellBackgroundColor = [UIColor purpleColor];
         
         return cell;
     }
@@ -913,7 +949,6 @@
                                                       reuseIdentifier:CellIdentifier];
         }
         cell.event = event;
-        cell.cellBackgroundColor = [UIColor purpleColor];
 
         return cell;
     }
@@ -926,6 +961,7 @@
         }
         cell.textLabel.text = event.activity.title;
         cell.detailTextLabel.text = event.activity.text;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         return cell;
     }

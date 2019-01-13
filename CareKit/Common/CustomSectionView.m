@@ -36,6 +36,7 @@
 
     _subtitleLabel = [OCKLabel new];
     _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _subtitleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
     _subtitleLabel.numberOfLines = 0;
     [self.contentView addSubview:_subtitleLabel];
 }
@@ -54,7 +55,7 @@
     _constraints = [NSMutableArray arrayWithArray: @[
                                                      // Title Label
                                                      [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1.0 constant:25.0],
-                                                     [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:15.0],
+                                                     [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:20.0],
                                                      [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-15.0],
                                                      // Subtitle Label
                                                      [NSLayoutConstraint constraintWithItem: _subtitleLabel

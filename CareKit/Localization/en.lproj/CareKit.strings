@@ -34,9 +34,10 @@
 "ACTIVITY_TYPE_OPTIONAL_SECTION_HEADER" = "Optional";
 "ACTIVITY_TYPE_READ_ONLY_SECTION_HEADER" = "Read Only";
 "ACTIVITY_TYPE_HEALTH_DATA_SECTION_HEADER" = "Device Health Data";
-"ACTIVITY_TYPE_BUTTON_SECTION_HEADER" = "";
+"ACTIVITY_TYPE_BUTTON_SECTION_HEADER" = "Test";
 "ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_HEADER" = "Non-prescribed Trackables";
-"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_SUBHEADER" = "These are items not prescribed by your clinician but recorded by you in the My Health and My Treatment sections. You have NO non-prescribed trackables for today.";
+"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_SECTION_SUBHEADER" = "These are items not prescribed by your clinician but recorded by you in the My Health and My Treatment sections.";
+"ACTIVITY_TYPE_NON_PRESCRIBED_TRACKABLE_EMPTY_SECTION_SUBHEADER" = "These are items not prescribed by your clinician but recorded by you in the My Health and My Treatment sections. You have NO non-prescribed trackables for today.";
 "HEADER_TITLE_CARE_OVERVIEW" = "Your care overview is %@ complete";
 "HEADER_TITLE_ACTIVITY_STATUS" = "Your activity status is %@ complete";
 

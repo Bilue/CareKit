@@ -191,6 +191,8 @@ NSDate *OCKDateFromStringISO8601(NSString *string);
 
 NSString *OCKSignatureStringFromDate(NSDate *date);
 
+NSString *OCKShortStyleTimeStringFromDate(NSDate *date);
+
 NSURL *OCKCreateRandomBaseURL(void);
 
 CGFloat OCKExpectedLabelHeight(UILabel *label);
