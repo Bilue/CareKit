@@ -175,6 +175,10 @@
 		FC9047E821E5A1890012C685 /* CustomSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9047E621E5A1890012C685 /* CustomSectionView.m */; };
 		FCE629F121EBE40600D541A9 /* CustomSegmentedControlSection.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */; };
 		FCE629F221EBE40600D541A9 /* CustomSegmentedControlSection.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */; };
+		FCE629FC21ED82B100D541A9 /* OCKCustomCareCardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE629FA21ED82B100D541A9 /* OCKCustomCareCardViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCE629FD21ED82B100D541A9 /* OCKCustomCareCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE629FB21ED82B100D541A9 /* OCKCustomCareCardViewController.m */; };
+		FCE62A0021ED8DF200D541A9 /* CustomHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE629FE21ED8DF200D541A9 /* CustomHeaderView.h */; };
+		FCE62A0121ED8DF200D541A9 /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE629FF21ED8DF200D541A9 /* CustomHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +394,10 @@
 		FC9047E621E5A1890012C685 /* CustomSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSectionView.m; sourceTree = "<group>"; };
 		FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControlSection.h; sourceTree = "<group>"; };
 		FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControlSection.m; sourceTree = "<group>"; };
+		FCE629FA21ED82B100D541A9 /* OCKCustomCareCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCKCustomCareCardViewController.h; sourceTree = "<group>"; };
+		FCE629FB21ED82B100D541A9 /* OCKCustomCareCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCKCustomCareCardViewController.m; sourceTree = "<group>"; };
+		FCE629FE21ED8DF200D541A9 /* CustomHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomHeaderView.h; sourceTree = "<group>"; };
+		FCE629FF21ED8DF200D541A9 /* CustomHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,6 +600,8 @@
 			children = (
 				24EA9FA31C9A3D420036028E /* OCKCareCardViewController.h */,
 				24EA9FA41C9A3D420036028E /* OCKCareCardViewController.m */,
+				FCE629FA21ED82B100D541A9 /* OCKCustomCareCardViewController.h */,
+				FCE629FB21ED82B100D541A9 /* OCKCustomCareCardViewController.m */,
 				24EA9FD31C9A3DDE0036028E /* Table View Cell */,
 				24EA9FD11C9A3DC60036028E /* Detail View */,
 			);
@@ -898,6 +908,8 @@
 			children = (
 				FC9047E521E5A1890012C685 /* CustomSectionView.h */,
 				FC9047E621E5A1890012C685 /* CustomSectionView.m */,
+				FCE629FE21ED8DF200D541A9 /* CustomHeaderView.h */,
+				FCE629FF21ED8DF200D541A9 /* CustomHeaderView.m */,
 				FCE629EF21EBE40600D541A9 /* CustomSegmentedControlSection.h */,
 				FCE629F021EBE40600D541A9 /* CustomSegmentedControlSection.m */,
 			);
@@ -916,6 +928,7 @@
 				BA660FF91EB1FF1100B7B1A7 /* OCKPatientHeaderView.h in Headers */,
 				248929821C90E70100EBBE1F /* OCKContactInfoTableViewCell.h in Headers */,
 				BAD3286A1DB028AF0021A773 /* OCKInsightsRingTableViewCell.h in Headers */,
+				FCE62A0021ED8DF200D541A9 /* CustomHeaderView.h in Headers */,
 				24F8E4761C934FEE003B77BD /* OCKDefines_Private.h in Headers */,
 				241707CF1C9A3AB7005D7123 /* OCKGroupedBarChartView.h in Headers */,
 				AEB37F691DF22BEF002370A6 /* OCKColor.h in Headers */,
@@ -979,6 +992,7 @@
 				8677EE141C9775EB00588CD6 /* OCKCarePlanEventResult.h in Headers */,
 				FCE629F121EBE40600D541A9 /* CustomSegmentedControlSection.h in Headers */,
 				2489297B1C90E70100EBBE1F /* OCKConnectTableViewHeader.h in Headers */,
+				FCE629FC21ED82B100D541A9 /* OCKCustomCareCardViewController.h in Headers */,
 				BA3793D81EB66BC50004A540 /* OCKPatientWidget.h in Headers */,
 				BA3793E81EB66D7D0004A540 /* OCKDefaultPatientWidgetView.h in Headers */,
 				241707D11C9A3AB7005D7123 /* OCKInsightItem.h in Headers */,
@@ -1167,6 +1181,8 @@
 				BA38457F1D9CA698007990DA /* OCKGlyph.m in Sources */,
 				FCE629F221EBE40600D541A9 /* CustomSegmentedControlSection.m in Sources */,
 				24FD43741E56843E004439EA /* OCKConnectHeaderView.m in Sources */,
+				FCE629FD21ED82B100D541A9 /* OCKCustomCareCardViewController.m in Sources */,
+				FCE62A0121ED8DF200D541A9 /* CustomHeaderView.m in Sources */,
 				8677EE191C9775EB00588CD6 /* OCKCarePlanStore.xcdatamodeld in Sources */,
 				241707D01C9A3AB7005D7123 /* OCKGroupedBarChartView.m in Sources */,
 				BA8A8CA11D9DAC680078C5EA /* OCKWeekView.m in Sources */,

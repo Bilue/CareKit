@@ -50,6 +50,7 @@
 
 // Care Card
 #import <CareKit/OCKCareCardViewController.h>
+#import <CareKit/OCKCustomCareCardViewController.h>
 #import <CareKit/OCKCareCardDetailViewController.h>
 
 // Care Content
