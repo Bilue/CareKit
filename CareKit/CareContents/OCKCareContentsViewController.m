@@ -891,6 +891,24 @@
             [_delegate careContentsViewController:self didSelectRowWithAssessmentEvent:selectedEvent];
         }
     }
+    else if (type == OCKCarePlanActivityTypeNonPrescribedTrackables) {
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(careContentsViewController:didSelectRowWithNonPrescribedTrackable:)]) {
+            [_delegate careContentsViewController:self didSelectRowWithNonPrescribedTrackable:selectedEvent];
+        }
+    }
+    else if (type == OCKCarePlanActivityTypeHealthEntry) {
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(careContentsViewController:didSelectRowWithHealthEntry:)]) {
+            [_delegate careContentsViewController:self didSelectRowWithHealthEntry:selectedEvent];
+        }
+    }
+    else if (type == OCKCarePlanActivityTypeButton) {
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(careContentsViewController:didSelectRowWithTrackButton:)]) {
+            [_delegate careContentsViewController:self didSelectRowWithTrackButton:selectedEvent];
+        }
+    }
     else if (type == OCKCarePlanActivityTypeReadOnly) {
         if ([self delegateCustomizesRowReadOnlySelection]) {
             [self.delegate careContentsViewController:self didSelectRowWithReadOnlyActivity:selectedEvent.activity];
