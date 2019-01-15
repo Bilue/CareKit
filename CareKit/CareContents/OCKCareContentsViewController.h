@@ -91,6 +91,30 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)careContentsViewController:(OCKCareContentsViewController *)viewController didSelectRowWithReadOnlyActivity:(OCKCarePlanActivity *)readOnlyActivity;
 
 /**
+ Tells the delegate when the user selected a track button event.
+
+ @param viewController      The view controller providing the callback.
+ @param trackButton         The track button that the user selected.
+ */
+- (void)careContentsViewController:(OCKCareContentsViewController *)viewController didSelectRowWithTrackButton:(OCKCarePlanEvent *)trackButton;
+
+/**
+ Tells the delegate when the user selected a health entry event.
+
+ @param viewController      The view controller providing the callback.
+ @param healthEntry         The health entry event that the user selected.
+ */
+- (void)careContentsViewController:(OCKCareContentsViewController *)viewController didSelectRowWithHealthEntry:(OCKCarePlanEvent *)healthEntry;
+
+/**
+ Tells the delegate when the user selected a non-prescribed trackable event.
+
+ @param viewController                 The view controller providing the callback.
+ @param nonPrescribedTrackable         The non-prescribed trackable event that the user selected.
+ */
+- (void)careContentsViewController:(OCKCareContentsViewController *)viewController didSelectRowWithNonPrescribedTrackable:(OCKCarePlanEvent *)nonPrescribedTrackable;
+
+/**
  Asks the delegate if care view controller should automatically mark the state of an intervention activity when
  the user selects and deselects the intervention circle button. If this method is not implemented, care view controller
  handles all event completion by default.
