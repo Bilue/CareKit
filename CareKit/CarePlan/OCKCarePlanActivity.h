@@ -57,6 +57,10 @@ typedef NS_ENUM(NSInteger, OCKCarePlanActivityType) {
     OCKCarePlanActivityTypeHealthEntry,
     /** Non-prescribed Trackables */
     OCKCarePlanActivityTypeNonPrescribedTrackables,
+    /** Trackable Symptoms */
+    OCKCarePlanActivityTypeTrackableSymptom,
+    /** Trackable Medications */
+    OCKCarePlanActivityTypeTrackableMedication,
     /** Button, Read-only activity */
     OCKCarePlanActivityTypeButton
 };
@@ -242,6 +246,54 @@ OCK_CLASS_AVAILABLE
                                         instructions:(NSString *)instructions
                                             schedule:(OCKCareSchedule *)schedule
                                             userInfo:(NSDictionary *)userInfo;
+
+/**
+ Convenience initializer for trackable symptom activity type
+ This initializer covers necessary attributes for building trackable symptom activities.
+
+ @param identifier      Unique identifier string.
+ @param groupIdentifier Group identifier string.
+ You can use the identifier to group similar activities, but they will all be grouped under "Non-prescribed Trackables" section in the table view.
+ @param title           The title of the non-prescribed activity.
+ @param text            A descriptive text for the non-prescribed activity.
+ @param instructions    Additional instructions for the non-prescribed activity.
+ @param imageURL        Image for the non-prescribed activity.
+ @param schedule        The schedule for the non-prescribed activity.
+ @param userInfo        Save any additional objects that comply with the NSCoding protocol.
+
+ @return Initialized OCKCarePlanActivity instance.
+ */
++ (instancetype)trackableSymptomWithIdentifier:(NSString *)identifier
+                               groupIdentifier:(NSString *)groupIdentifier
+                                         title:(NSString *)title
+                                          text:(NSString *)text
+                                  instructions:(NSString *)instructions
+                                      schedule:(OCKCareSchedule *)schedule
+                                      userInfo:(NSDictionary *)userInfo;
+
+/**
+ Convenience initializer for trackable medication activity type
+ This initializer covers necessary attributes for building trackable medication activities.
+
+ @param identifier      Unique identifier string.
+ @param groupIdentifier Group identifier string.
+ You can use the identifier to group similar activities, but they will all be grouped under "Non-prescribed Trackables" section in the table view.
+ @param title           The title of the non-prescribed activity.
+ @param text            A descriptive text for the non-prescribed activity.
+ @param instructions    Additional instructions for the non-prescribed activity.
+ @param imageURL        Image for the non-prescribed activity.
+ @param schedule        The schedule for the non-prescribed activity.
+ @param userInfo        Save any additional objects that comply with the NSCoding protocol.
+
+ @return Initialized OCKCarePlanActivity instance.
+ */
++ (instancetype)trackableMedicationWithIdentifier:(NSString *)identifier
+                               groupIdentifier:(NSString *)groupIdentifier
+                                         title:(NSString *)title
+                                          text:(NSString *)text
+                                  instructions:(NSString *)instructions
+                                      schedule:(OCKCareSchedule *)schedule
+                                      userInfo:(NSDictionary *)userInfo;
 
 /**
  Default initializer for OCKCarePlanActivity.

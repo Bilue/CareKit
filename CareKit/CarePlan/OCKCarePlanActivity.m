@@ -280,6 +280,52 @@
                                    optional:YES];
 }
 
++ (instancetype)trackableSymptomWithIdentifier:(NSString *)identifier
+                                     groupIdentifier:(NSString *)groupIdentifier
+                                               title:(NSString *)title
+                                                text:(NSString *)text
+                                        instructions:(NSString *)instructions
+                                            schedule:(OCKCareSchedule *)schedule
+                                            userInfo:(NSDictionary *)userInfo {
+
+    return [[self alloc] initWithIdentifier:identifier
+                            groupIdentifier:groupIdentifier
+                                       type:OCKCarePlanActivityTypeTrackableSymptom
+                                      title:title
+                                       text:text
+                                  tintColor:nil
+                               instructions:instructions
+                                   imageURL:nil
+                                   schedule:schedule
+                           resultResettable:NO
+                                   userInfo:userInfo
+                                 thresholds:nil
+                                   optional:YES];
+}
+
++ (instancetype)trackableMedicationWithIdentifier:(NSString *)identifier
+                               groupIdentifier:(NSString *)groupIdentifier
+                                         title:(NSString *)title
+                                          text:(NSString *)text
+                                  instructions:(NSString *)instructions
+                                      schedule:(OCKCareSchedule *)schedule
+                                      userInfo:(NSDictionary *)userInfo {
+
+    return [[self alloc] initWithIdentifier:identifier
+                            groupIdentifier:groupIdentifier
+                                       type:OCKCarePlanActivityTypeTrackableMedication
+                                      title:title
+                                       text:text
+                                  tintColor:nil
+                               instructions:instructions
+                                   imageURL:nil
+                                   schedule:schedule
+                           resultResettable:NO
+                                   userInfo:userInfo
+                                 thresholds:nil
+                                   optional:YES];
+}
+
 - (instancetype)initWithCoreDataObject:(OCKCDCarePlanActivity *)cdObject {
     
     NSParameterAssert(cdObject);
